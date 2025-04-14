@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>mateo</title>
+</head>
+<body>
+  <div id="main-content">
+
+    <label class="neumorphic" for="language-select" style="
+    background-color: #e0e5ec;
+    border-radius: 20px;
+    width: 150px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 16;"
+    >Choose your language:</label>
+    <input type="text" id="locationInput" class="neumorphic neumorphic-input" placeholder="Enter a location">
+    <button onclick="getForecast()" class="neumorphic neumorphic-button hvr-float" style=" 
+    background-color: #e0e5ec;
+    border-radius: 20px;
+    width: 150px;
+    text-align: center;
+    margin: 0 auto;">Get Forecast</button>
+
+
+    <div id="weather">Loading forecast...</div>
+
+  </div>
+
+  <footer>
+
+    <h6 class="neumorphic">Copyright 2025 | All rights reserved.</h6>
+
+  </footer>
+
+  <script src="interactions.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+
+  <script>
+
+    const userLang = navigator.language || 'gr';
+
+    console.log(userLang)
+
+    document.documentElement.lang = userLang.split('-')[0];
+
+    const Translations = {
+
+      en: {
+
+        label: "Choose a different location",
+        placeholder: "Enter a location",
+        button: "Get Forecast",
+        weather: "Loading forecast...",
+
+      },
+
+      el: {
+
+        label: "Επιλέξτε διαφορετική τοποθεσία:",
+        placeholder: "Εισάγετε μια τοποθεσία",
+        button: "Πάρτε την πρόγνωση",
+        weather: "Φόρτωση πρόγνωσης...",
+
+      }
+
+    };
+
+    function translateContent() {
+
+      const lang = userLang.split('-')[0];
+      const translation = Translations[lang] || Translations['en'];
+
+      document.querySelector('label[for="language-select"]').textContent = translation.label;
+      document.getElementById('locationInput').placeholder = translation.placeholder;
+      document.querySelector('button').textContent = translation.button;
+      document.getElementById('weather').textContent = translation.weather;
+
+    }
+    
+    translateContent();
+  </script>
+</body>
+</html>
